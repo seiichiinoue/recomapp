@@ -1,0 +1,22 @@
+# ignore all
+*
+
+# allow any
+!*/
+!*.cpp
+!*.hpp
+!*.py
+!*.md
+!.gitignore
+!makefile
+!dockerfile
+!data/raw/*
+!data/train/*
+
+# ignore 
+model/*
+boost_test/*
+old/*
+data/fig/*
+# for debug
+cstm.dSYM/*
