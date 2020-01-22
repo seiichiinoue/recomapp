@@ -17,10 +17,10 @@ class Text(object):
         return False
 
     def _wakati(self, path):
-        if self._is_japanese(self.text[0][0]):
-            self._wakati_ja(path)
-        else:
-            self._wakati_en(path)
+        #if self._is_japanese(self.text[0][0]):
+        self._wakati_ja(path)
+        #else:
+        #self._wakati_en(path)
         
     def _wakati_ja(self, path):
         wakatied = []
