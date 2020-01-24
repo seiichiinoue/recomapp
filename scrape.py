@@ -9,7 +9,9 @@ def remove_attrs(soup, whitelist=tuple()):
     return soup
 
 def get_html(url):
-    html = requests.get(url).text
+    res = requests.get(url)
+    if not res: return False
+    html = res.text
     return html
 
 def parse_html(html):
@@ -36,16 +38,22 @@ def parse_html(html):
 
 def get_article_titles():
     titles = os.listdir("/Users/seiichi/Desktop/repositories/web/blog/content/post/")
-    return titles
+    titles_new = []
+    for title in titles:
+        if not title.endswith(".md"):
+            continue
+        titles_new.append(title)
+    return titles_new
 
 def main():
     titles = get_article_titles()
     for t in titles:
         t = t.replace(".md", "")
         html = get_html("https://seiichiinoue.github.io/post/{}".format(t))
+        if not html: continue
         text = parse_html(html)
         text = text[6:-4]
-        with open("./data/{}.txt".format(t),"w") as f:
+        with open("./data/raw/{}.txt".format(t),"w") as f:
             for line in text:
                 f.write(line)
                 f.write('\n')

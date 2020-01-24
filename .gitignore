@@ -2,6 +2,7 @@
 .lda.py
 .data_crawler.py
 .app_cstm.py
+.data/
 tmp/
 sample/
 cstm/
