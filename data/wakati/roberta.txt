@@ -1,0 +1,27 @@
+先日 ， Facebook AI が GLUE や SQuAD で Google の BERT を 超え た と 話題 に なっ て い た モデル の 論文 を 公開 し た らしい ので 概要 を まとめ まし た ． 
+概要 
+GLUE , SQuAD , RACE で 評価 ． 
+以下 の 改良 で sota 達成 らしい ． 
+コーパス サイズ を 大きく し た 
+Next Sentence Prediction を やめ た 
+pretraining を 長く し た 
+pretraining の マスク を 毎回 かえ た 
+batchsize を 大きく し た 
+実験 詳細 
+Static vs Dynamic Masking 
+オリジナル の BERT モデル で は 前 処理 段階 で masking を 行い ， 以後 変更 なし で 学習 を 進める ． 
+RoBERTa で は 同じ masking を 用い て 学習 する こと を 避ける ため ， 40 回 の 学習 で 10 通り の maskig を 適用 し た データセット を 用いる ． 
+実験 の 結果 fine tuning を 用い た 様々 な 後続 タスク で static を 超える スコア を 出し た ． 
+Model Input Format and Next Sentence Prediction 
+オリジナル の BERT で は 50 % の 確率 で 同じ document の segment を （ 残り の 50 % で そう で は ない segment を ） 繋げ て 2 文 を 1 sequence として 入力 と し て い た ． 
+また ， それ を 用い て 行わ れる 隣接 文 予測 タスク による 誤差 は オリジナル BERT モデル において 重要 と さ れ て い た （ 文脈 を 考慮 し た 文章 埋め 込み を 取得 する ため に 必要 な タスク で ある という 主張 だっ た 記憶 ） 
+実験 は 以下 の 通り 
+まず ， Segment - Pair + NSP / Sentence - Pair + NSP の 比較 
+NSP / non - NSP の 比較 
+Doc - Sentence / Full - Sentence の 比較 
+Segment 中 に Sentence が 複数個 あっ て も 良い Segment - Pair と ， 必ず 1 つ の Sentence 同士 を 結合 し て 使う Sentence - Pair で それぞれ Next Sentence Prediction を 行っ た 結果 ， Single - Sentence を 使う こと は 後続 の タスク の パフォーマンス に 悪影響 を 与える こと が わかっ た ． 
+NSP を 除い た ほう が 後続 タスク の 性能 が あがる こと が わかっ た 
+コーパス を 作成 する とき に ， 全て の document を 跨ぐ より 一つ の document から という 制約 を つけ た ほう が 性能 が いい こと が わかっ た 
+Training Large Batches 
+適切 に 学習 率 が 増加 し た 際 は ， バッチ サイズ を 大きく し て も うまく 行く こと が 実験 的 に わかっ た ． 
+事前 学習 の 精度 に 加え て 後続 の タスク の スコア も 上昇 する こと が わかっ た 
