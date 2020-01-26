@@ -1,3 +1,4 @@
+Docker で Ubuntu の 環境 を 構築 する 
 最近 ， Rui Ueyama さん の コンパイラ 本 を 参考 に コンパイラ を 作成 し て いる の です が ， 推奨 環境 が Linux だっ た ので Docker で 仮想 環境 を 作成 し まし た ． 
 やっ た こと 
 Image の Pull 

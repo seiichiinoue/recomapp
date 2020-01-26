@@ -1,3 +1,4 @@
+C++のLanguage Server設定メモ
 neovimでC++のファイルを編集しようとした際にlanguage server周りの設定が少し面倒だったのでメモ．
 Language Server Protocol
 Language Server Protocol(LSP)は，エディタや統合開発環境などの開発支援ツールと言語サーバ(Language Server)のコミュニケーションの手順を定めた仕様．

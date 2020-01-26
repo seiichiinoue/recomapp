@@ -1,3 +1,4 @@
+[ 論文 サーベイ ] RoBERTa 
 先日 ， Facebook AI が GLUE や SQuAD で Google の BERT を 超え た と 話題 に なっ て い た モデル の 論文 を 公開 し た らしい ので 概要 を まとめ まし た ． 
 概要 
 GLUE , SQuAD , RACE で 評価 ． 
