@@ -22,19 +22,13 @@ $ python run_server.py
 - get recommendation via `POST` method
 
 ```
-$ curl http://0.0.0.0:5000/infer -X POST -H 'Content-Type:application/json' -d '{"filename":"hmm"}'
+$ curl http://0.0.0.0:5000/infer -X POST -H 'Content-Type:application/json' -d '{"title":"Continuous Space Topic Modelの実装"}'
 ```
 
 - get recommendation via `GET` method
 
 ```
-$ curl http://0.0.0.0:5000/infer -X GET -H 'Content-Type:application/json' -d '{"filename":"hmm"}'
-```
-
-- if successed request
-
-```
-{"Content-Type":"application/json","prediction":["cstm.txt","vpylm.txt","hmm.txt","tobit.txt","lsgan.txt","bit.txt","modinv.txt","nlp.txt","procon.txt","roberta.txt"],"success":true}
+$ curl http://0.0.0.0:5000/infer -X GET -H 'Content-Type:application/json' -d '{"title":"Continuous Space Topic Modelの実装"}'
 ```
 
 ### web server (heroku)
@@ -42,7 +36,7 @@ $ curl http://0.0.0.0:5000/infer -X GET -H 'Content-Type:application/json' -d '{
 - get recommendation
 
 ```
-$ curl https://recomapp.herokuapp.com/infer -X POST -H 'Content-Type:application/json' -d '{"filename":"hmm"}'
+$ curl https://recomapp.herokuapp.com/infer -X POST -H 'Content-Type:application/json' -d '{"title":"Continuous Space Topic Modelの実装"}'
 ```
 
 - check log
