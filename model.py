@@ -39,15 +39,17 @@ def create_dataset(documents, ignore_word=0):
 
 def train_model(n_topic=5):
     documents = []
-    article_list = os.listdir("./data/wakati/")
+    # article_list = os.listdir("./data/wakati/")
+    with open("./data/objects/articles.pickle", "rb") as f:
+        articles = pickle.load(f)
     id2doc = dict()
-    for i, name in enumerate(article_list):
-        id2doc[i] = name.replace(".txt", "")
+    id2title = dict()
+    for i, article in enumerate(articles):
+        id2doc[i] = article.name
+        id2title[i] = article.title
     # print(id2doc)
-    for name in article_list:
-        with open("./data/wakati/"+name) as f:
-            sentences = f.readlines()
-            documents.append(sentences)
+    for article in articles:
+        documents.append(article.processed_text)
     corpus, dictionary = create_dataset(documents)
     lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=n_topic, random_state=0)
     print("pplx: {}".format(np.exp2(-lda_model.log_perplexity(corpus))))
@@ -57,6 +59,8 @@ def train_model(n_topic=5):
         pickle.dump(corpus, f)
     with open("./model/id2doc.pickle", "wb") as f:
         pickle.dump(id2doc, f)
+    with open("./model/id2title.pickle", "wb") as f:
+        pickle.dump(id2title, f)
     with open("./model/dictionary.pickle", "wb") as f:
         pickle.dump(dictionary, f)
 
