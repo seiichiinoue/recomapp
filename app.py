@@ -1,10 +1,12 @@
 import sys, os
 import flask
+from flask_cors import CORS
 import numpy as np
 import pickle
 import gensim
 # initialize our Flask application and pre-trained model
 app = flask.Flask(__name__)
+CORS(app)   # for cross-origin resource sharing
 
 def find_sim_docs(tar, model_path="./model/lda.model"):
     # load objects to infer similar documents

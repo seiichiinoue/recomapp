@@ -1,4 +1,5 @@
 gensim==3.6.0
 Flask==1.1.1
 flask-ngrok==0.0.25
+Flask-Cors==3.0.8
 gunicorn==20.0.4
