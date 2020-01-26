@@ -2,11 +2,10 @@ import argparse, os, unicodedata
 import MeCab
 
 class Text(object):
-    def __init__(self, path="./data/train/kokoro.txt"):
+    def __init__(self, text):
         self.wakati = MeCab.Tagger('-Owakati')
         self.chasen = MeCab.Tagger('-Ochasen')
-        with open(path, "r", encoding="utf-8") as f:
-            self.text = f.readlines()
+        self.text = text
         for i in range(len(self.text)):
             self.text[i] = self.text[i].replace("\n", "")
 
@@ -18,10 +17,11 @@ class Text(object):
 
     def _wakati(self, path):
         #if self._is_japanese(self.text[0][0]):
-        self._wakati_ja(path)
+        processed = self._wakati_ja(path)
         #else:
         #self._wakati_en(path)
-        
+        return processed 
+
     def _wakati_ja(self, path):
         wakatied = []
         for i in range(len(self.text)):
@@ -30,7 +30,7 @@ class Text(object):
         with open(path, "w") as f:
             for t in wakatied:
                 f.write(t+'\n')
-        return None
+        return wakatied
     
     def _wakati_en(self, path):
         wakatied = []
@@ -43,12 +43,25 @@ class Text(object):
         return None
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='this script for text processing.')
-    parser.add_argument('--tar_path', help='directory located raw file')
-    parser.add_argument('--save_path', help='directory save processed text')
-    args = parser.parse_args()
-    filelist = os.listdir(args.tar_path)
-    for file in filelist:
-        if file.endswith(".txt"):
-            t = Text(args.tar_path+file)
-            t._wakati(args.save_path+file)
+    # parser = argparse.ArgumentParser(description='this script for text processing.')
+    # parser.add_argument('--tar_path', help='directory located raw file')
+    # parser.add_argument('--save_path', help='directory save processed text')
+    # args = parser.parse_args()
+    # filelist = os.listdir(args.tar_path)
+    # for file in filelist:
+        # if file.endswith(".txt"):
+            # t = Text(args.tar_path+file)
+            # t._wakati(args.save_path+file)
+    import pickle
+    with open("./data/objects/articles.pickle", "rb") as f:
+        articles = pickle.load(f)
+    articles_new = []
+    for article in articles:
+        t = Text(article.raw_text)
+        processed = t._wakati("./data/wakati/{}.txt".format(article.name))
+        article_new = article
+        article_new.set_processed_text(processed)
+        articles_new.append(article_new)
+    
+    with open("./data/objects/articles.pickle", "wb") as f:
+        pickle.dump(articles_new, f)

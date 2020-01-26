@@ -1,6 +1,8 @@
 import os, sys, re
 import requests
+import pickle
 from bs4 import BeautifulSoup as bs
+from article import *
 
 def remove_attrs(soup, whitelist=tuple()):
     for tag in soup.findAll(True):
@@ -46,17 +48,27 @@ def get_article_titles():
     return titles_new
 
 def main():
+    articles = []
     titles = get_article_titles()
     for t in titles:
         t = t.replace(".md", "")
         html = get_html("https://seiichiinoue.github.io/post/{}".format(t))
         if not html: continue
         text = parse_html(html)
-        text = text[6:-4]
+        text = text[5:-4]
+        # create article abject
+        article = Article()
+        article.set_name(t)
+        article.set_title(text[0])
+        article.set_raw_text(text)
+        articles.append(article)
+        # write to file par document
         with open("./data/raw/{}.txt".format(t),"w") as f:
             for line in text:
                 f.write(line)
                 f.write('\n')
+    with open("./data/objects/articles.pickle", "wb") as f:
+        pickle.dump(articles, f)
 
 if __name__ == '__main__':
     # html = get_html("https://seiichiinoue.github.io/post/tobit/")
