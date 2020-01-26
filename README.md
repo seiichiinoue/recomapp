@@ -29,6 +29,7 @@ $ curl http://0.0.0.0:5000/infer -X POST -H 'Content-Type:application/json' -d '
 
 ```
 $ curl http://0.0.0.0:5000/infer -X GET -H 'Content-Type:application/json' -d '{"filename":"hmm"}'
+```
 
 - if successed request
 
@@ -49,3 +50,8 @@ $ curl https://recomapp.herokuapp.com/infer -X POST -H 'Content-Type:application
 ```
 $ heroku logs --tail
 ```
+
+
+## Dev Memo
+
+- Hugo内でapiを扱うため，`サイト名`から，`サイト名`のリストと，`固定url以下の文字列`のjsonを返すapiに変更した方が良さそう．
