@@ -19,11 +19,16 @@
 $ python run_server.py
 ```
 
-- get recommendation
+- get recommendation via `POST` method
 
 ```
 $ curl http://0.0.0.0:5000/infer -X POST -H 'Content-Type:application/json' -d '{"filename":"hmm"}'
 ```
+
+- get recommendation via `GET` method
+
+```
+$ curl http://0.0.0.0:5000/infer -X GET -H 'Content-Type:application/json' -d '{"filename":"hmm"}'
 
 - if successed request
 

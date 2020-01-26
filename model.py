@@ -43,7 +43,7 @@ def train_model(n_topic=5):
     id2doc = dict()
     for i, name in enumerate(article_list):
         id2doc[i] = name.replace(".txt", "")
-    print(id2doc)
+    # print(id2doc)
     for name in article_list:
         with open("./data/wakati/"+name) as f:
             sentences = f.readlines()
@@ -89,5 +89,9 @@ def allocate_topic_to_documents(model_path="./model/lda.model"):
 # def find_similar_docs(doc_id):
 
 if __name__ == '__main__':
+    # for i in range(2, 10):
+        # print("num_topic:", i)
+        # train_model(i)
     train_model()
     # allocate_topic_to_documents()
+

@@ -13,7 +13,7 @@ def find_sim_docs(tar, model_path="./model/lda.model"):
     with open("./model/id2doc.pickle", "rb") as f:
         id2doc = pickle.load(f)
     doc2id = {doc:id for id, doc in id2doc.items()}
-    print(doc2id)
+    # print(doc2id)
     with open("./model/dictionary.pickle", "rb") as f:
         dictionary = pickle.load(f)
     model = gensim.models.ldamodel.LdaModel.load(model_path)
@@ -28,6 +28,7 @@ def find_sim_docs(tar, model_path="./model/lda.model"):
                 topic_index = t
                 topic_prob = p
         topics[i] = topic_index
+    # print(topics)
     # find similar documents from topic list
     target_topic = topics[doc2id[target_document]]
     sim_docs = []
@@ -36,7 +37,7 @@ def find_sim_docs(tar, model_path="./model/lda.model"):
             sim_docs.append(id2doc[doc_id])
     return sim_docs
 
-@app.route("/infer", methods=["POST"])
+@app.route("/infer", methods=["POST","GET"])
 def infer():
     response = {
         "success": False,
@@ -47,12 +48,17 @@ def infer():
         if flask.request.get_json().get("filename"):
             # read feature from json
             filename = flask.request.get_json().get("filename")
-
             # classify the input feature
             response["prediction"] = find_sim_docs(filename)
-
             # indicate that the request was a success
             response["success"] = True
+
+    elif flask.request.method == "GET":
+        if flask.request.args.get("filename"):
+            filename = flask.request.args.get("filename")
+            response["prediction"] = find_sim_docs(filename)
+            response["success"] = True
+
     # return the data dictionary as a JSON response
     return flask.jsonify(response)
 
