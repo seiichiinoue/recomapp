@@ -6,6 +6,8 @@ import pickle
 import gensim
 # initialize our Flask application and pre-trained model
 app = flask.Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
+app.config["JSON_SORT_KEYS"] = False
 CORS(app)   # for cross-origin resource sharing
 
 def find_sim_docs(tar, model_path="./model/lda.model"):
@@ -35,10 +37,10 @@ def find_sim_docs(tar, model_path="./model/lda.model"):
         topics[i] = topic_index
     # print(topics)
     # find similar documents from topic list
-    target_topic = topics[title2id[target_document]]
+    target_topic = topics[doc2id[target_document]]
     sim_docs_name, sim_docs_title = [], []
     for doc_id, topic in enumerate(topics):
-        if topic == target_topic and doc_id != title2id[target_document]:
+        if topic == target_topic and doc_id != doc2id[target_document]:
             sim_docs_name.append(id2doc[doc_id])
             sim_docs_title.append(id2title[doc_id])
     return sim_docs_name, sim_docs_title
@@ -51,20 +53,20 @@ def infer():
     }
     # ensure an feature was properly uploaded to our endpoint
     if flask.request.method == "POST":
-        if flask.request.get_json().get("title"):
+        if flask.request.get_json().get("name"):
             # read feature from json
-            title = flask.request.get_json().get("title")
+            name = flask.request.get_json().get("name")
             # predict similar documents of requested document
-            names, titles = find_sim_docs(title)
+            names, titles = find_sim_docs(name)
             response["similar_doc_name"] = names
             response["similar_doc_title"] = titles
             # indicate that the request was a success
             response["success"] = True
 
     elif flask.request.method == "GET":
-        if flask.request.args.get("title"):
-            title = flask.request.args.get("title")
-            names, titles = find_sim_docs(title)
+        if flask.request.args.get("name"):
+            name = flask.request.args.get("name")
+            names, titles = find_sim_docs(name)
             response["similar_doc_name"] = names
             response["similar_doc_title"] = titles
             response["success"] = True
