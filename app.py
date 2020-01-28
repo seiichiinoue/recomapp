@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, random
 import flask
 from flask_cors import CORS
 import numpy as np
@@ -45,6 +45,15 @@ def find_sim_docs(tar, model_path="./model/lda.model"):
             sim_docs_title.append(id2title[doc_id])
     return sim_docs_name, sim_docs_title
 
+def shuffle(a, b):
+    tmp = [[i, j] for i, j in zip(a, b)]
+    random.shuffle(tmp)
+    anew, bnew = [], []
+    for i, j in tmp:
+        anew.append(i)
+        bnew.append(j)
+    return anew, bnew
+
 @app.route("/infer", methods=["POST","GET"])
 def infer():
     response = {
@@ -67,6 +76,7 @@ def infer():
         if flask.request.args.get("name"):
             name = flask.request.args.get("name")
             names, titles = find_sim_docs(name)
+            names, titles = shuffle(names, titles)
             response["similar_doc_name"] = names
             response["similar_doc_title"] = titles
             response["success"] = True
