@@ -25,6 +25,9 @@ def find_sim_docs(tar, model_path="./model/lda.model"):
         dictionary = pickle.load(f)
     model = gensim.models.ldamodel.LdaModel.load(model_path)
     target_document = tar
+    # exception hundling: DocumentNotFoundError
+    if target_document not in doc2id.keys():
+        return [], []
     # allocate topic to documents
     topics = [0] * len(corpus)
     for i in range(len(corpus)):
@@ -70,7 +73,7 @@ def infer():
             response["similar_doc_name"] = names
             response["similar_doc_title"] = titles
             # indicate that the request was a success
-            response["success"] = True
+            response["success"] = (names != [] and titles != [])
 
     elif flask.request.method == "GET":
         if flask.request.args.get("name"):
@@ -79,7 +82,7 @@ def infer():
             names, titles = shuffle(names, titles)
             response["similar_doc_name"] = names
             response["similar_doc_title"] = titles
-            response["success"] = True
+            response["success"] = (names != [] and titles != [])
 
     # return the data dictionary as a JSON response
     return flask.jsonify(response)
