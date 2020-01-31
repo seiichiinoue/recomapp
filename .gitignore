@@ -3,7 +3,9 @@ __pycache__/
 .lda.py
 .data_crawler.py
 .app_cstm.py
+.app_cos_sim.py
 .app_get.py
+.app_url.py
 .data/
 tmp/
 sample/
