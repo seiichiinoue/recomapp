@@ -20,3 +20,4 @@ frame n : backtrace で 表示 さ れ て いる 関数 の うち ， n 番目
 info locals : ローカル 変数 の 一覧 を 確認 ． lldb コマンド は 
 info args : 引数 の 一覧 を 確認 ． lldb コマンド は 
 print val : 変数 val の 値 を 表示 
+See Also 

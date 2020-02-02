@@ -48,3 +48,4 @@ prefix [ 1 , a ] の ところ の 和 を 求める ．
 参照 
 Binary Indexed Tree の はなし 
 転倒 数 アルゴリズム 
+See Also 

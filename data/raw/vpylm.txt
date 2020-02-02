@@ -89,3 +89,4 @@ VPYLMでは，単語列の確率を以下のように表します（HPYLMの単�
 参照
 Bayesian Variable Order n-gram Language Model based on Pitman-Yor Processes
 musyoku.github.io
+See Also
