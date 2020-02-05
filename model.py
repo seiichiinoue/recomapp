@@ -30,7 +30,7 @@ def create_dataset(documents, ignore_word=0):
                     doc.append(word)
         doc_new.append(doc)
     dictionary = gensim.corpora.Dictionary(doc_new)
-    dictionary.filter_extremes(no_below=5, no_above=0.5)
+    dictionary.filter_extremes(no_below=3, no_above=0.3)
     print("vocab size: {}".format(len(dictionary)))
     corpus = []
     for document in doc_new:
@@ -110,4 +110,3 @@ if __name__ == '__main__':
     train_model()
     # get_topic()
     # allocate_topic_to_documents()
-
