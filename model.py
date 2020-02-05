@@ -30,6 +30,7 @@ def create_dataset(documents, ignore_word=0):
                     doc.append(word)
         doc_new.append(doc)
     dictionary = gensim.corpora.Dictionary(doc_new)
+    dictionary.filter_extremes(no_below=5, no_above=0.5)
     print("vocab size: {}".format(len(dictionary)))
     corpus = []
     for document in doc_new:
@@ -90,6 +91,16 @@ def allocate_topic_to_documents(model_path="./model/lda.model"):
         pickle.dump(topic, f)
     return topic
 
+def get_topic():
+    with open("./model/dictionary.pickle", "rb") as f:
+        dictionary = pickle.load(f)
+    model = gensim.models.ldamodel.LdaModel.load("./model/lda.model")
+    for i in range(model.num_topics):
+        topic = model.get_topic_terms(i)
+        print("topic {}".format(i))
+        for id, p in topic:
+            print(dictionary[id], p)
+
 # def find_similar_docs(doc_id):
 
 if __name__ == '__main__':
@@ -97,5 +108,6 @@ if __name__ == '__main__':
         # print("num_topic:", i)
         # train_model(i)
     train_model()
+    # get_topic()
     # allocate_topic_to_documents()
 

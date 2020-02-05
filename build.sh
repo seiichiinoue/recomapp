@@ -1,2 +1,2 @@
-#!/bin/sh
-py scrape.py && py process.py && py model.py
+#!/bin/zsh
+python scrape.py && python process.py && python model.py
