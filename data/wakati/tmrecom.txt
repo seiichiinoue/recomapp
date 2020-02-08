@@ -69,3 +69,4 @@ Gibbs サンプラー は 変 分 ベイズ と 比べ て 計算 量 が 多い
 [ return ] 
 Python 用 の 軽量 な ウェブアプリケーションフレームワーク です 
 [ return ] 
+See Also 
