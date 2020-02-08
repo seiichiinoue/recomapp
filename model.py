@@ -38,7 +38,7 @@ def create_dataset(documents, ignore_word=0):
         corpus.append(bow)
     return corpus, dictionary
 
-def train_model(n_topic=5):
+def train_model(n_topic=4):
     documents = []
     # article_list = os.listdir("./data/wakati/")
     with open("./data/objects/articles.pickle", "rb") as f:
@@ -108,6 +108,6 @@ if __name__ == '__main__':
         # print("num_topic:", i)
         # train_model(i)
     train_model()
-    #get_topic()
-    #allocate_topic_to_documents()
+    # get_topic()
+    # allocate_topic_to_documents()
 
