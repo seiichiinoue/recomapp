@@ -87,8 +87,8 @@ def allocate_topic_to_documents(model_path="./model/lda.model"):
         topic[i] = max_t
         print(id2doc[i], topic[i])
         # print(res)
-    with open("./model/topic.pickle", "wb") as f:
-        pickle.dump(topic, f)
+    #with open("./model/topic.pickle", "wb") as f:
+        #pickle.dump(topic, f)
     return topic
 
 def get_topic():
@@ -108,5 +108,6 @@ if __name__ == '__main__':
         # print("num_topic:", i)
         # train_model(i)
     train_model()
-    # get_topic()
-    # allocate_topic_to_documents()
+    #get_topic()
+    #allocate_topic_to_documents()
+
