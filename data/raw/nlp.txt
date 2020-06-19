@@ -1,19 +1,4 @@
-自然言語処理(ML)の論文まとめ
-単語について
-単語の意味をコンピュータに理解させる手法は大きく分けて以下の三つ．
-シソーラス: 人の手で意味を与えていく．（辞書など）
-カウントベース: 着目する単語の周囲の単語に着目する（分散仮説）
-推論ベース: Word2Vecなど．
-Embedding
-自然言語処理におけるembeddingとは，文や単語，文字など自然言語の構成要素に対して何らかの空間におけるベクトルを与えることを示す．
-one-hot表現
-最もシンプルなembedding手法．
-表現したい語彙をリストにして，各単語の値がindexに対応する部分が1，それ以外が0のベクトルとなる．
-Bag-of-Word(BoW)は，one-hotベクトルの和を取ることで対象のsequence単位の特徴量を得ることができる．
-LSI; Latent Semantic Indexing
-BoWによる空間モデルが使用される．（出現順序を考慮せず，出現頻度などのみで文書をベクトル化するモデル）
-各文書を潜在変数空間の点として捉え，関連度を検索クエリの単語との距離で測る．
-LSIの発展としてLDA; Latent Dirichlet Allocationなどがある．
+DNN系NLPモデルサーベイ
 Word2Vec
 論文: Efficient Estimation of Word Representations in Vector Space
 大量のテキストデータを用いて学習を行い，各単語の意味を推論によって表現する方法．

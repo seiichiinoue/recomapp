@@ -1,19 +1,4 @@
-自然 言語 処理 ( ML ) の 論文 まとめ 
-単語 について 
-単語 の 意味 を コンピュータ に 理解 さ せる 手法 は 大きく 分け て 以下 の 三つ ． 
-シソーラス : 人 の 手 で 意味 を 与え て いく ． （ 辞書 など ） 
-カウント ベース : 着目 する 単語 の 周囲 の 単語 に 着目 する （ 分散 仮説 ） 
-推論 ベース : Word 2 Vec など ． 
-Embedding 
-自然 言語 処理 における embedding と は ， 文 や 単語 ， 文字 など 自然 言語 の 構成 要素 に対して 何らかの 空間 における ベクトル を 与える こと を 示す ． 
-one - hot 表現 
-最も シンプル な embedding 手法 ． 
-表現 し たい 語彙 を リスト に し て ， 各 単語 の 値 が index に 対応 する 部分 が 1 ， それ 以外 が 0 の ベクトル と なる ． 
-Bag - of - Word ( BoW ) は ， one - hot ベクトル の 和 を 取る こと で 対象 の sequence 単位 の 特徴 量 を 得る こと が できる ． 
-LSI ; Latent Semantic Indexing 
-BoW による 空間 モデル が 使用 さ れる ． （ 出現 順序 を 考慮 せ ず ， 出現 頻度 など のみ で 文書 を ベクトル 化 する モデル ） 
-各 文書 を 潜在 変数 空間 の 点 として 捉え ， 関連 度 を 検索 クエリ の 単語 と の 距離 で 測る ． 
-LSI の 発展 として LDA ; Latent Dirichlet Allocation など が ある ． 
+DNN 系 NLP モデル サーベイ 
 Word 2 Vec 
 論文 : Efficient Estimation of Word Representations in Vector Space 
 大量 の テキスト データ を 用い て 学習 を 行い ， 各 単語 の 意味 を 推論 によって 表現 する 方法 ． 
