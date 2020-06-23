@@ -1,4 +1,4 @@
-DNN系NLPモデルサーベイ
+ニューラル言語モデルサーベイ
 Word2Vec
 論文: Efficient Estimation of Word Representations in Vector Space
 大量のテキストデータを用いて学習を行い，各単語の意味を推論によって表現する方法．

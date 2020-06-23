@@ -1,4 +1,4 @@
-DNN 系 NLP モデル サーベイ 
+ニューラル 言語 モデル サーベイ 
 Word 2 Vec 
 論文 : Efficient Estimation of Word Representations in Vector Space 
 大量 の テキスト データ を 用い て 学習 を 行い ， 各 単語 の 意味 を 推論 によって 表現 する 方法 ． 
