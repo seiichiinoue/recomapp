@@ -52,6 +52,7 @@ def train_model(n_topic=4):
     for article in articles:
         documents.append(article.processed_text)
     corpus, dictionary = create_dataset(documents)
+    print(corpus)
     lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=n_topic, random_state=0)
     print("pplx: {}".format(np.exp2(-lda_model.log_perplexity(corpus))))
     
