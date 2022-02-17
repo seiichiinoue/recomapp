@@ -1,4 +1,4 @@
-[ 論文 実装 ] LSGAN 
+Least Squares Generative Adversarial Networks の 実装 
 最近 、 Least Squares Generative Adversarial Networks を 読ん だ ので 、 Pytorch で 実装 し て み まし た 。 本当は アニメ 顔 生成 モデル を 作り たかっ た の です が 、 ローカル の スペック で は 厳し そう だっ た ので MNIST による 追試 しか でき て い ませ ん が … 
 画像 処理 初学 者 で 、 学習 し た こと の まとめ が てら 記事 を 書い て いる ので 、 間違い が ある かも しれ ませ ん 。 その 際 は ご 指摘 ください 。 
 GAN について 

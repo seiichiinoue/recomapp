@@ -39,7 +39,7 @@ def parse_html(html):
     return stripped
 
 def get_article_titles():
-    titles = os.listdir("/Users/seiichi/Documents/repositories/sites/blog/content/post/")
+    titles = os.listdir("/Users/seiichi/Documents/repos/sites/blog/content/post/")
     titles_new = []
     for title in titles:
         if not title.endswith(".md"):
