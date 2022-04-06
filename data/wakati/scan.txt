@@ -72,3 +72,4 @@ python 等 だ と ライブラリ が うまく やっ て くれる はず な
 [ return ] 
 「 喜び に 我 を 忘れ て 」 という 意味 ． 
 [ return ] 
+See Also 
